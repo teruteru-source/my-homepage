@@ -616,5 +616,5 @@
 	{ "L": 9907, "Kronecker": -1, "m_minus": null, "fracvalue" : null, "realvalue" : null },
 	{ "L": 9923, "Kronecker": 1, "m_minus": 50, "fracvalue" : "1/55 * sqrt(9923) * pi", "realvalue" : 5.689952997583895 },
 	{ "L": 9931, "Kronecker": 1, "m_minus": 2, "fracvalue" : "5/11 * sqrt(9931) * pi", "realvalue" : 142.30615444316 },
-	{ "L": 9967, "Kronecker": 1, "m_minus": 18, "fracvalue" : "5/99 * sqrt(9967) * pi", "realvalue" : 15.84042799064429 },
+	{ "L": 9967, "Kronecker": 1, "m_minus": 18, "fracvalue" : "5/99 * sqrt(9967) * pi", "realvalue" : 15.84042799064429 }
 ]
