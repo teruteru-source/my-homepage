@@ -2,25 +2,46 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>複数表の切り替え</title>
+  <title>説明付き表切り替え</title>
   <link href="https://unpkg.com/tabulator-tables@5.6.0/dist/css/tabulator.min.css" rel="stylesheet">
 </head>
 <body>
   <h1>データ一覧</h1>
 
   <select id="selector">
-    <option value="data1.json">表1</option>
-    <option value="data2.json">表2</option>
+    <option value="table1">表1</option>
+    <option value="table2">表2</option>
   </select>
+
+  <p id="description"></p>
 
   <div id="table"></div>
 
   <script src="https://unpkg.com/tabulator-tables@5.6.0/dist/js/tabulator.min.js"></script>
   <script>
+    const tableConfig = {
+      table1: {
+        file: "data1.json",
+        description: `
+          これは表1の説明です。<br>
+          ○○に関するデータをまとめています。
+        `
+      },
+      table2: {
+        file: "data2.json",
+        description: `
+          こちらは表2です。<br>
+          △△に関するデータです。
+        `
+      }
+    };
+
     let table;
 
-    function loadTable(file) {
-      fetch(file)
+    function switchTable(key) {
+      const config = tableConfig[key];
+      document.getElementById("description").innerHTML = config.description;
+      fetch(config.file)
         .then(r => r.json())
         .then(data => table.setData(data));
     }
@@ -38,10 +59,10 @@
         ],
       });
 
-      loadTable("data1.json");
+      switchTable("table1");
 
       document.getElementById("selector").addEventListener("change", e => {
-        loadTable(e.target.value);
+        switchTable(e.target.value);
       });
     });
   </script>
