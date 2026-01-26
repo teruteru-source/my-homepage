@@ -9,8 +9,8 @@
   <h1>データ一覧</h1>
 
   <select id="selector">
-    <option value="table1">表1</option>
-    <option value="table2">表2</option>
+    <option value="table1">N=11</option>
+    <option value="table2">N=17</option>
   </select>
 
   <p id="description"></p>
@@ -53,9 +53,11 @@
         pagination: "local",
         paginationSize: 50,
         columns: [
-          {title:"ID", field:"id", sorter:"number"},
-          {title:"名前", field:"name"},
-          {title:"値", field:"value", sorter:"number"}
+          {title:"lの値", field:"L"},
+          {title:"χ(-N)", field:"Kronecker"},
+          {title:"m^-", field:"m_minus"},
+          {title:"L(sym^2(f),2)/(L(f,1)*L(f TENSOR chi_l,1))の分数表現",field:"fracvalue"},
+          {title:"実数表現",field:"realvalue"}
         ],
       });
 
