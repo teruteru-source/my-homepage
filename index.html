@@ -6,39 +6,5 @@
 </head>
 <body>
   <h1>データ一覧</h1>
-
-  <!-- 表を置く場所 -->
-  <table border="1" id="table"></table>
-
-  <!-- JavaScriptを書く -->
-  <script>
-    fetch("data.json")
-      .then(response => response.json())
-      .then(data => {
-        const table = document.getElementById("table");
-
-        // 見出し行
-        const header = document.createElement("tr");
-        ["ID", "名前", "値"].forEach(text => {
-          const th = document.createElement("th");
-          th.textContent = text;
-          header.appendChild(th);
-        });
-        table.appendChild(header);
-
-        // データ行
-        data.forEach(row => {
-          const tr = document.createElement("tr");
-
-          ["id", "name", "value"].forEach(key => {
-            const td = document.createElement("td");
-            td.textContent = row[key];
-            tr.appendChild(td);
-          });
-
-          table.appendChild(tr);
-        });
-      });
-  </script>
 </body>
 </html>
