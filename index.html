@@ -2,37 +2,48 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>データ一覧</title>
-
-  <!-- Tabulator CSS -->
+  <title>複数表の切り替え</title>
   <link href="https://unpkg.com/tabulator-tables@5.6.0/dist/css/tabulator.min.css" rel="stylesheet">
 </head>
 <body>
   <h1>データ一覧</h1>
 
-  <!-- 表を表示する場所 -->
+  <select id="selector">
+    <option value="data1.json">表1</option>
+    <option value="data2.json">表2</option>
+  </select>
+
   <div id="table"></div>
 
-  <!-- Tabulator JS -->
   <script src="https://unpkg.com/tabulator-tables@5.6.0/dist/js/tabulator.min.js"></script>
-
   <script>
-    fetch("data.json")
-      .then(response => response.json())
-      .then(data => {
-        new Tabulator("#table", {
-          data: data,
-          layout: "fitColumns",
-          height: "600px",
-          pagination: "local",
-          paginationSize: 50,
-          columns: [
-            {title:"ID", field:"id", sorter:"number"},
-            {title:"名前", field:"name"},
-            {title:"値", field:"value", sorter:"number"}
-          ],
-        });
+    let table;
+
+    function loadTable(file) {
+      fetch(file)
+        .then(r => r.json())
+        .then(data => table.setData(data));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      table = new Tabulator("#table", {
+        layout: "fitColumns",
+        height: "600px",
+        pagination: "local",
+        paginationSize: 50,
+        columns: [
+          {title:"ID", field:"id", sorter:"number"},
+          {title:"名前", field:"name"},
+          {title:"値", field:"value", sorter:"number"}
+        ],
       });
+
+      loadTable("data1.json");
+
+      document.getElementById("selector").addEventListener("change", e => {
+        loadTable(e.target.value);
+      });
+    });
   </script>
 </body>
 </html>
